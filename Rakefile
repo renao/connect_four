@@ -6,17 +6,17 @@ require 'rake/testtask'
 $LOAD_PATH << "lib/"
 
 # load file 'lib/connect_four.rb'
-require 'connect_four'
+#require 'connect_four'
 # load file 'lib/connect_four/game_controller.rb'
-require 'connect_four/game_controller'
+#require 'connect_four/game_controller'
 # load file 'lib/connect_four/player.rb'
-require 'connect_four/game_controller/player'
+require 'player'
 # load file 'lib/connect_four/field.rb'
-require 'connect_four/game_controller/field'
+require 'field'
 # load file 'lib/connect_four/text_input.rb'
-require 'connect_four/game_controller/text_input'
+#require 'connect_four/game_controller/text_input'
 # load file 'lib/connect_four/text_output.rb'
-require 'connect_four/game_controller/text_output'
+#require 'connect_four/game_controller/text_output'
 
 
 task :default => :test

@@ -2,7 +2,7 @@ require 'rubygems'
 require 'bundler/setup'
 require 'minitest/autorun'
 
-require 'connect_four'
+#require 'ConnectFour'
 
 class ConnectFourSpec < MiniTest::Unit::TestCase
 
