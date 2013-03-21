@@ -4,19 +4,18 @@ require 'rake/testtask'
 
 # Add lib/ dir to load path
 $LOAD_PATH << "lib/"
-
 # load file 'lib/connect_four.rb'
-#require 'connect_four'
+require 'connect_four'
 # load file 'lib/connect_four/game_controller.rb'
-#require 'connect_four/game_controller'
+require 'game_controller'
 # load file 'lib/connect_four/player.rb'
 require 'player'
 # load file 'lib/connect_four/field.rb'
 require 'field'
 # load file 'lib/connect_four/text_input.rb'
-#require 'connect_four/game_controller/text_input'
+require 'text_input'
 # load file 'lib/connect_four/text_output.rb'
-#require 'connect_four/game_controller/text_output'
+require 'text_output'
 
 
 task :default => :test
@@ -27,4 +26,8 @@ Rake::TestTask.new do |t|
   t.libs << "test"
   t.test_files = FileList['test/*_test.rb']
   t.verbose = true
+end
+
+task :four do
+	ConnectFour.start
 end

@@ -7,10 +7,10 @@
 require 'game_controller'
 
 module ConnectFour
-	
-  # Inits the game controller and starts the game.
   attr_accessor :game
-  @game = GameController.start
-  
+  # Inits the game controller and starts the game.
+  def self.start
+    @game = GameController.start
+  end
 end
 

@@ -15,7 +15,7 @@ class TextOutput
 	#
 	# delay - Default delay for certain outputs.
 	# field - The current game field.
-	def initialize delay, field
+	def initialize delay=1, field
 		@delay = delay
 		@field = field
 	end

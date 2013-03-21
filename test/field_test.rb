@@ -24,7 +24,8 @@ class FieldTest < ConnectFourSpec
 	assert_equal 10, field.height
 	assert_equal 5, field.width
 	
-	# TODO: Tests for assignments.
+	assert_equal Field.new, Field.new
+	
   end
 
   def test_assignment
