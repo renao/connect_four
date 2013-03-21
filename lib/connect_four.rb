@@ -1,18 +1,14 @@
 ## ConnectFour -- Beispielprojekt --
 # 
-# Dieses Modul beschreibt das allseits bekannte "Vier gewinnt" in einer Konsolen-Anwendung für die neopoly GmbH
+# Describes the well-known "ConnectFour" game.
 #
 # 2013 René Wernicke
 
-class ConnectFour
-
-	# Erzeugt ein Vier-Gewinnt-Spiel
-	def initialize
-		# nothing to do so far...
-	end
+module ConnectFour
+require_relative 'Game_Controller'
 	
-	# Erstellt eine Hello-World-Ausgabe in der Konsole
-	def hello_world(text)
-		"#{text}"
-	end
+	# Inits the game controller and starts the game.
+	@game = Game_Controller.new
+	
 end
+
