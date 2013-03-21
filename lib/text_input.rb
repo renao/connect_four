@@ -4,7 +4,7 @@
 #
 # 2013 René Wernicke
 
-class Text_Input
+class TextInput
 	
 	# The maximum width of the games field.
 	@max_width
@@ -15,13 +15,16 @@ class Text_Input
 	end
 	
 	# Gets the non-validated name entry.
+	#
+	# RETURN players name.
 	def get_player_name
 		name = gets.chomp
-		# Returns players name
 		name
 	end
 	
 	# Gets a validated coordinate entry.
+	#
+	# RETURN Column number.
 	def get_coordinate
 	coord = 0
 	coord = gets.chomp

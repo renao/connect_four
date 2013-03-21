@@ -5,4 +5,5 @@ require 'minitest/autorun'
 require 'connect_four'
 
 class ConnectFourSpec < MiniTest::Unit::TestCase
+
 end

@@ -4,11 +4,11 @@
 #
 # 2013 René Wernicke
 
-class Game_Controller
-	require_relative 'Field'
-	require_relative 'Text_Output'
-	require_relative 'Text_Input'
-	require_relative 'Player'
+class GameController
+	require 'field'
+	require 'text_output'
+	require 'text_input'
+	require 'player'
 	
 	# The default delay time between certain outputs (time in seconds)
 	@@Delay = 1
@@ -42,9 +42,9 @@ class Game_Controller
 	#
 	# Return: TRUE if game is set up.
 	def setup_game
-		@text_in = Text_Input.new (@@Field_width)
+		@text_in = TextInput.new (@@Field_width)
 		@field = Field.new(@@Field_width, @@Field_height)
-		@text_out = Text_Output.new(@@Delay, @field)
+		@text_out = TextOutput.new(@@Delay, @field)
 		@text_out.show_game_setup
 		self.setup_get_player_names
 		

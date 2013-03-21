@@ -4,11 +4,13 @@
 #
 # 2013 René Wernicke
 
+require 'game_controller'
+
 module ConnectFour
-require_relative 'Game_Controller'
 	
-	# Inits the game controller and starts the game.
-	@game = Game_Controller.new
+  # Inits the game controller and starts the game.
+  attr_accessor :game 
+  @game = GameController.new
 	
 end
 

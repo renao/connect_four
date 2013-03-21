@@ -4,7 +4,7 @@
 #
 # 2013 René Wernicke
 
-class Text_Output
+class TextOutput
 	
 	# Delay between certain outputs (time in seconds).
 	@delay
@@ -15,7 +15,7 @@ class Text_Output
 	#
 	# delay - Default delay for certain outputs.
 	# field - The current game field.
-	def initialize (delay, field)
+	def initialize delay, field
 		@delay = delay
 		@field = field
 	end

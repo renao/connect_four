@@ -11,7 +11,9 @@ class Player
 	attr_accessor :wins
 	attr_accessor :losses
 	
-	# Creates a player with his name
+	# Creates a player with his name.
+	#
+	# name - the players name.
 	def initialize (name)
 		@name = name
 		@wins, @losses = 0, 0;
