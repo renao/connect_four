@@ -18,7 +18,7 @@ class TextInput
 	#
 	# RETURN players name.
 	def get_player_name
-		name = gets.chomp
+		name = STDIN.gets.chomp
 		name
 	end
 	
@@ -27,7 +27,7 @@ class TextInput
 	# RETURN Column number.
 	def get_coordinate
 	coord = 0
-	coord = gets.chomp
+	coord = STDIN.gets.chomp
 	# Validation - if it fails, get another
 	(coord_valid? coord) ? coord : (self.get_coordinate)
 	end
