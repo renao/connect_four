@@ -11,20 +11,24 @@ module GameController
   require 'player'
 	
   # The default delay time between certain outputs (time in seconds)
-  @@Delay = 1
+  DELAY = 1
   # The dimensions of the game field.
-  @@Field_width = 6
-  @@Field_height = 7
+  FIELD_WIDTH = 6
+  FIELD_HEIGHT = 7
 	
   # The active game field.
   @field
+  
   # The active players.
   @player_x
   @player_o
+  
   # The text output device.
   @text_out
+  
   # The text input device.
   @text_in
+  
   # The next game turns player.
   @next_turn
 
@@ -37,14 +41,15 @@ module GameController
       end
     # FutureFeature?: Revenge. Record keeping.
   end
-	
+
+  private
   # Sets ups the game informations.
   #
   # Return: TRUE if game is set up.
     def self.setup_game
-      @text_in = TextInput.new(@@Field_width)
-      @field = Field.new(@@Field_width, @@Field_height)
-      @text_out = TextOutput.new(@@Delay, @field)
+      @text_in = TextInput.new(FIELD_WIDTH)
+      @field = Field.new(FIELD_WIDTH, FIELD_HEIGHT)
+      @text_out = TextOutput.new(DELAY, @field)
       
 	  @text_out.show_game_setup
       self.setup_create_players
@@ -70,25 +75,39 @@ module GameController
   # Starts the game. (Represents the games main-loop).
   def self.start_game
     @text_out.show_game_start
-
-    while @field.playable
-      # Who is playing in the next round?
+    has_winner = false
+	
+    while @field.is_playable? && !has_winner
+      # Was the token properly inserted into the field?
+	  token_inserted = false
+	  # Who is playing on the next round?
       @next_turn = (@next_turn == @player_x) ? @player_o : @player_x
-
-      # ...show it...
-      @text_out.show_next_turn(@next_turn)
-      # ... get his/her input.
-      next_x = @text_in.get_coordinate
-      
       # Get players representation in the fields assignment.
       bool_player = (@next_turn == @player_x) ? true : false
-			
-      # Inserts token into the field.
-      @field.insert_token(next_x.to_i, bool_player)
-      	
-      # TODO: Check if token was inserted correctly.
-      # TODO: Check if somebody has won the game.	
+	  
+	  # Do not continue until the token was inserted properly.
+	  while !token_inserted
+        # Show next round information.
+        @text_out.show_next_turn(@next_turn.name)
+        
+		# Get the input.
+        next_x = @text_in.get_column
+
+        # Inserts token into the field.
+        token_inserted = @field.token_inserted?(next_x.to_i, bool_player)
+      end
+	  
+	  has_winner = @field.has_winner?
+	  	
     end
+	
+	if has_winner
+	  @text_out.show_winner_information(@next_turn.name)
+	end
+	
+	if !@field.is_playable?
+	  @text_out.show_no_more_moves
+	end
   
   end
   
