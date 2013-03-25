@@ -33,10 +33,10 @@ class Field
   # height - the height of the created field.
   def initialize(width = 6, height = 7)
     @width = width
-    @height = height	
-	
-	@last_insert_x = 0
-	@last_insert_y = 0
+    @height = height  
+  
+  @last_insert_x = 0
+  @last_insert_y = 0
   
     @assignment = Array.new width
 
@@ -53,7 +53,7 @@ class Field
     x = 0
     while ((x < self.width) && (!is_playable))
       is_playable = (@assignment[x][0] == nil);
-	  x += 1
+    x += 1
     end
     is_playable
   end
@@ -95,55 +95,49 @@ class Field
   #
   # Return: TRUE if there is a winner.
   def has_winner?
-    check_for_winner
+    check_column || check_row
   end
   
   private
-  
-  # Checks if the last inserted token made a winner.
-  #
-  # Returns true if the last insertion returned a winner.
-  def check_for_winner
-    check_column || check_row
-  end
    
   # Checks if the last insertion made a winner in horizontal.
   #
   # Returns true if last move made a winner.
   def check_row
-    count = 0
-	puts @last_insert_x
-	# Get the players symbol.
-	player_symbol = assignment[@last_insert_x - 1][@last_insert_y - 1]
-	next_symbol = player_symbol
+    
+	count = 1
 	
-	i = @last_insert_x
+	# Checking to the left.
+	if @last_insert_x > 1
 	
-	# Go to the left of the row.
-	while (i >= 1) && (next_symbol == player_symbol)
-	  i -= 1
-	  count += 1
+	  i = @last_insert_x - 1
+	  player_symbol = assignment[@last_insert_x - 1][@last_insert_y - 1]
 	  next_symbol = assignment[i - 1][@last_insert_y - 1]
-        
-	end
-	
-	# And now, go to the right - if possible.
-	if @last_insert_x < width
-	  i = @last_insert_x
-	
-	  next_symbol = assignment[i - 1][@last_insert_y - 1]
-		
-	  while (i < width) && (next_symbol == player_symbol)
+	  
+	  while (i >= 1) && (count < 4) && (next_symbol == player_symbol)
 	    count += 1
-		i += 1
-	    next_symbol = assignment[i - 1][@last_insert_y - 1]
-        
+		i -= 1
+		next_symbol = assignment[i - 1][@last_insert_y - 1]
 	  end
 	
+	end  
+	
+	# Checking to the right.
+	if @last_insert_x < width
+	
+	  i = @last_insert_x + 1
+	  player_symbol = assignment[@last_insert_x - 1][@last_insert_y - 1]
+	  next_symbol = assignment[i - 1][@last_insert_y - 1]
+	  
+	  while (i <= width) && (count < 4) && (next_symbol == player_symbol)
+	    count += 1
+		i += 1
+		next_symbol = (i < width + 1) ? assignment[i - 1][@last_insert_y - 1] : !player_symbol
+	  end
+	  
 	end
 	
-	count >= 4
-	
+    count >= 4
   end
   
   # Checks if the last insertion made a winner in vertical.
@@ -151,21 +145,20 @@ class Field
   # Returns true if there is a winner.
   def check_column
     count = 0
-	
-	# Get the players symbol.
-	player_symbol = assignment[@last_insert_x - 1][@last_insert_y - 1]
-	next_symbol = player_symbol
-	
-	i = @last_insert_y
-	
-	# Go to the bottom of the column.
-	while (i <= height) && (next_symbol == player_symbol)
-	  i += 1
-	  count += 1
-	  next_symbol = assignment[@last_insert_x - 1][i - 1]
-        
-	end
-	
-	count >= 4
+  
+  # Get the players symbol.
+  player_symbol = assignment[@last_insert_x - 1][@last_insert_y - 1]
+  next_symbol = player_symbol
+  
+  i = @last_insert_y
+  
+  # Go to the bottom of the column.
+  while (i <= height) && (next_symbol == player_symbol)
+    i += 1
+    count += 1
+    next_symbol = assignment[@last_insert_x - 1][i - 1]  
+  end
+  
+  count >= 4
   end
 end

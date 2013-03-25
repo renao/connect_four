@@ -12,44 +12,80 @@ class FieldTest < ConnectFourSpec
   def test_create_field
     field = Field.new
     
-	# Testing defaults
-	assert_equal 6, field.width
-	assert_equal 7, field.height
-	
-	
-	# Changing values
-	field.height = 10
-	field.width = 5
-	
-	assert_equal 10, field.height
-	assert_equal 5, field.width
-	
-	assert_equal Field.new, Field.new
-	
+  # Testing defaults
+  assert_equal 6, field.width
+  assert_equal 7, field.height
+  
+  
+  # Changing values
+  field.height = 10
+  field.width = 5
+  
+  assert_equal 10, field.height
+  assert_equal 5, field.width
+  
+  assert_equal Field.new, Field.new
+  
   end
 
   def test_assignment
     field = Field.new
-	
-	empty_assign = Array.new field.width
-	field.width.times { |x| empty_assign[x] = Array.new field.height }
+  
+  empty_assign = Array.new field.width
+  field.width.times { |x| empty_assign[x] = Array.new field.height }
     
-	assert_equal(empty_assign, field.assignment)
+  assert_equal(empty_assign, field.assignment)
   end
   
-  def test_insert_token
-	field = Field.new
-	
-	empty_assign = Array.new field.width
-	field.width.times { |x| empty_assign[x] = Array.new field.height }
+  def test_inserted_token?
+  
+  field = Field.new
+  
+  empty_assign = Array.new field.width
+  field.width.times { |x| empty_assign[x] = Array.new field.height }
     
-	# Filling first line with Player X values
-	field.height.times { field.insert_token(1, true) }
-	
-	field.height.times do |y| 
-	  assert_equal true, field.assignment[0][y - 1]
-	end
-	
+  # Filling first line with Player X values
+  field.height.times { field.token_inserted?(1, true) }
+  
+  # Testing filled first row.
+  field.height.times do |y| 
+    assert_equal true, field.assignment[0][y - 1]
   end
+  
+  # testing the empty rows (x + 1)
+  (field.width - 1).times do |x|
+    field.height.times do |y| 
+      refute_equal true, field.assignment[x][y - 1]
+      assert_equal nil, field.assignment[x][y - 1]
+    end
+  end
+  
+  # testing column overflow - first row.
+  refute_equal true, field.token_inserted?(1, true)
+  
+  # testing column overflow - other rows.
+  (field.width - 1).times do |x|
+    assert_equal true, field_token_inserted?(1, true)
+  end
+  
+  end
+  
+  def test_is_playable?
+    empty_field = Field.new
+      
+    assert_equal true, empty_field.is_playable?
+	
+	# filling the field with values.
+	empty_field.width.times do |x|
+	  empty_field.height.times do |y|
+	    empty_field.token_inserted? x, true
+	  end
+	end
+  
+	refute_equal true, empty_field.is_playable?
+  
+  
+  end
+  
   
 end
