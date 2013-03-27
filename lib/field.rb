@@ -17,6 +17,9 @@ class Field
   @last_insert_x
   @last_insert_y
   
+  # Has the game started?
+  @game_started
+  
   # Represents the fields assignment in the active game as a 2D array [x][y].
   #
   # Possible values:
@@ -35,9 +38,10 @@ class Field
     @width = width
     @height = height  
   
-  @last_insert_x = 0
-  @last_insert_y = 0
-  
+    @last_insert_x = 0
+    @last_insert_y = 0
+    @game_started = false
+	
     @assignment = Array.new width
 
     width.times do |x|
@@ -82,6 +86,7 @@ class Field
     @last_insert_y = y
     
     is_inserted = true
+	@game_started = true
     end
     is_inserted
   end
@@ -95,7 +100,8 @@ class Field
   #
   # Return: TRUE if there is a winner.
   def has_winner?
-    check_column || check_row
+    (@last_insert_x > 0) ? (check_column || check_row) : false
+  
   end
   
   private
@@ -161,4 +167,5 @@ class Field
   
   count >= 4
   end
+  
 end

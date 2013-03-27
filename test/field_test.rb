@@ -40,10 +40,7 @@ class FieldTest < ConnectFourSpec
   def test_inserted_token?
   
   field = Field.new
-  
-  empty_assign = Array.new field.width
-  field.width.times { |x| empty_assign[x] = Array.new field.height }
-    
+ 
   # Filling first line with Player X values
   field.height.times { field.token_inserted?(1, true) }
   
@@ -55,8 +52,11 @@ class FieldTest < ConnectFourSpec
   # testing the empty rows (x + 1)
   (field.width - 1).times do |x|
     field.height.times do |y| 
-      refute_equal true, field.assignment[x][y - 1]
-      assert_equal nil, field.assignment[x][y - 1]
+      if (x == 0) 
+	    assert_equal(true, field.assignment[x][y - 1])
+      else
+	    assert_equal(nil, field.assignment[x][y - 1])
+	  end
     end
   end
   
@@ -65,7 +65,7 @@ class FieldTest < ConnectFourSpec
   
   # testing column overflow - other rows.
   (field.width - 1).times do |x|
-    assert_equal true, field_token_inserted?(1, true)
+    assert_equal(false, field.token_inserted?(1, true))
   end
   
   end
@@ -96,8 +96,8 @@ class FieldTest < ConnectFourSpec
     # Field filled with x should return ALWAYS a winner.
 	field_filled_x = Field.new
 	
-	Field.width.times do |x|
-	  Field.height.times do
+	field.width.times do |x|
+	  field.height.times do
 	    field_filled_x.token_inserted?(x, true)
 	  end
 	end
