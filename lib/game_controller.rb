@@ -12,6 +12,7 @@ module GameController
 	
   # The default delay time between certain outputs (time in seconds)
   DELAY = 1
+  
   # The dimensions of the game field.
   FIELD_WIDTH = 6
   FIELD_HEIGHT = 7

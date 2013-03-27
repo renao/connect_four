@@ -11,30 +11,40 @@ class TextOutput
   # The current game field.
   attr_reader :field
   
+  # Predefined texts for the output.
+  TEXT_GAME_SETUP = "ConnectFour - neopoly GmbH\n2013 Rene Wernicke\n\nLet's play a game of ConnectFour!"
+  TEXT_ENTER_PLAYER = "\nPlayer {player_symbol}: Please enter your name:"
+  TEXT_THANKS_PLAYER = "Thank you, {player_name} - Your symbol will be {player_symbol}.\n"
+  TEXT_GAME_START = "\nThe game starts now - enjoy!"
+  TEXT_NEXT_TURN = "It's your turn {player_name}. Please enter the columns number for your next move."
+  TEXT_LINES_HEADLINE = "\n::: CURRENT FIELD :::\n"
+  TEXT_WINNER_INFORMATION = "\nCongratulations, {player_name}! You won this incredible game!"
+  TEXT_NO_MORE_MOVES = "Well, you are incredible players! There are no more moves left:\n"
+  
   # Sets up the text output.
   #
   # delay - Default delay for certain outputs.
   # field - The current game field.
   def initialize(delay = 1, field)
-    @delay = delay
+    # Getting the game rules.
+	@delay = delay
     @field = field
+	
   end
   
   # Shows the initial game text.
   def show_game_setup
-    puts "ConnectFour - neopoly GmbH"
-    puts "2013 Rene Wernicke"
-    self.show_empty_row
-    puts "Let's play a game of ConnectFour!"
+    puts TEXT_GAME_SETUP
     sleep(@delay)
   end
   
   # Shows the request input for players name text.
   #
   # symbol - represents the players specific ingame symbol.
-  def show_enter_player(symbol)
-    self.show_empty_row
-    puts "Player #{symbol}: Please enter your name:"
+  def show_enter_player(symbol)	
+    output_text = String.new(TEXT_ENTER_PLAYER)
+	output_text['{player_symbol}'] = symbol
+	puts output_text
   end
   
   # Shows the text after a players name is entered.
@@ -42,15 +52,17 @@ class TextOutput
   # name - The players name.
   # symbol - The players specific ingame symbol.
   def show_thanks_player(name, symbol)
-    puts "Thank you, #{name} - Your symbol will be #{symbol}."
-    self.show_empty_row
+    output_text = String.new(TEXT_THANKS_PLAYER)
+    output_text['{player_name}'] = name
+	output_text['{player_symbol}'] = symbol
+	
+	puts output_text
     sleep(@delay)
   end
   
   # Shows the game initiation text.
   def show_game_start
-    self.show_empty_row
-    puts "The game starts now - enjoy!"
+    puts TEXT_GAME_START
     sleep(@delay * 2)
   end
   
@@ -58,19 +70,22 @@ class TextOutput
   #
   # player - The active players name.
   def show_next_turn(name)
-    self.show_empty_row
+    output_text = String.new(TEXT_NEXT_TURN)
+    output_text['{player_name}'] = name
+	
+	self.show_empty_row
     self.show_lines
     sleep(@delay)
-    self.show_empty_row
+    
+	self.show_empty_row
     sleep(@delay)
-    puts "It's your turn #{name}. Please enter the columns number for your next move."
+    
+	puts output_text
   end
 
   # Shows the lines of the game field.
   def show_lines
-    self.show_empty_row
-    puts "::: Current Field :::"
-    self.show_empty_row
+    puts TEXT_LINES_HEADLINE
     
     y = 0;
     while (y < @field.height)
@@ -96,28 +111,16 @@ class TextOutput
   #
   # player - The active players name.
   def show_winner_information(name)
-    self.show_empty_row
-    self.show_lines
+    output_text = String.new(TEXT_WINNER_INFORMATION)
+    output_text['{player_name}'] = name
+	
     sleep(@delay)
-    self.show_empty_row
-    sleep(@delay)
-    puts "Congratulations, #{name}!"
-	sleep(@delay)
-	self.show_empty_row
-	puts "You won this incredible game!"
+    puts output_text
   end
   
   # Shows the text if there are no more moves left.
   def show_no_more_moves
-    self.show_empty_row
-    sleep(@delay)
-    self.show_empty_row
-    sleep(@delay)
-    puts "Well, you are incredible players!"
-	sleep(@delay)
-	self.show_empty_row
-	puts "There are no more moves left:"
-	self.show_empty_row
+    puts TEXT_NO_MORE_MOVES
 	self.show_lines
   end
   

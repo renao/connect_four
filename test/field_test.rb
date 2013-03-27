@@ -87,5 +87,23 @@ class FieldTest < ConnectFourSpec
   
   end
   
+  def test_has_winner?
+    field = Field.new
+	
+    # Empty field should have no winner.
+    refute_equal true, field.has_winner?
+	
+    # Field filled with x should return ALWAYS a winner.
+	field_filled_x = Field.new
+	
+	Field.width.times do |x|
+	  Field.height.times do
+	    field_filled_x.token_inserted?(x, true)
+	  end
+	end
+	
+	assert_equal(true, field_filled_x.has_winner?)
+  
+  end
   
 end
