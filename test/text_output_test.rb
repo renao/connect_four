@@ -31,7 +31,7 @@ class TextOutputTest < ConnectFourSpec
 	assert_output { text_out.show_game_setup }
 	
 	# Is it the expected output?
-	#assert_output("ConnectFour - neopoly GmbH\n2013 Rene Wernicke\n\nLet's play a game of ConnectFour!") { text_out.show_empty_row }
+	#assert_output("ConnectFour - neopoly GmbH\n2013 Rene Wernicke\n\nLet's play a game of ConnectFour!") { text_out.show_game_setup }
   end
   
   # Is the text output created correctly?
