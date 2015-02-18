@@ -1,15 +1,17 @@
 [travis]: https://travis-ci.org/renao/connect_four
 [travis-badge]: https://img.shields.io/travis/renao/connect_four.svg?branch=master
 
+# connect_four
+
 [![Travis][travis-badge]][travis]
 
 Console based "Vier gewinnt".
 
-== Game play
+## Game play
 
-$ connect_four
+ $ connect_four
 
-playerx> 2
+$ playerx> 2
 
  12345678
  ........
@@ -22,7 +24,7 @@ playerx> 2
  .xxoox x
 
 
-playero> 4
+$ playero> 4
 
  12345678
  ........
@@ -34,3 +36,4 @@ playero> 4
  ..xoox..
  .xxoox x
  
+etc.
