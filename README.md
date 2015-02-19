@@ -4,6 +4,7 @@
 # connect_four
 
 [![Travis][travis-badge]][travis]
+[![Code Climate](https://codeclimate.com/github/renao/connect_four/badges/gpa.svg)](https://codeclimate.com/github/renao/connect_four)
 
 Console based "Vier gewinnt".
 
