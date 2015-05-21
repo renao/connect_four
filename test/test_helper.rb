@@ -1,9 +1,8 @@
-require 'rubygems'
-require 'bundler/setup'
 require 'minitest/autorun'
+require 'assertions/field'
+require 'assertions/player'
 
-#require 'ConnectFour'
-
-class ConnectFourSpec < MiniTest::Unit::TestCase
+class ConnectFourSpec < MiniTest::Test
+  include Assertions
 
 end
