@@ -1,10 +1,14 @@
 [travis]: https://travis-ci.org/renao/connect_four
 [travis-badge]: https://img.shields.io/travis/renao/connect_four.svg?branch=master
-
+[inch-badge]: http://inch-ci.org/github/renao/connect_four.svg?branch=master
+[inch-url]: http://inch-ci.org/github/renao/connect_four
+[code-climate-badge]: https://codeclimate.com/github/renao/connect_four/badges/gpa.svg
+[code-climate-url]: https://codeclimate.com/github/renao/connect_four
 # connect_four
 
 [![Travis][travis-badge]][travis]
-[![Code Climate](https://codeclimate.com/github/renao/connect_four/badges/gpa.svg)](https://codeclimate.com/github/renao/connect_four)
+[![Code Climate][code-climate-badge]][code-climate-url]
+[![Inch CI][inch-badge]][inch-url]
 
 Console based "Vier gewinnt".
 
