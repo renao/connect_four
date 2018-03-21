@@ -1,5 +1,5 @@
 [travis]: https://travis-ci.org/renao/connect_four
-[travis-badge]: https://img.shields.io/travis/renao/connect_four.svg?branch=master
+[travis-badge]: https://travis-ci.org/renao/connect_four.svg?branch=master
 [inch-badge]: http://inch-ci.org/github/renao/connect_four.svg?branch=master
 [inch-url]: http://inch-ci.org/github/renao/connect_four
 [code-climate-badge]: https://codeclimate.com/github/renao/connect_four/badges/gpa.svg
